@@ -5,33 +5,50 @@ import '../../dummy_data.dart';
 import '../add/record_add_page.dart';
 import '../../widget/card_record_view.dart';
 
-class RecordListPage extends StatelessWidget {
+class RecordListPage extends StatefulWidget {
   const RecordListPage({Key? key}) : super(key: key);
+
+  @override
+  State<RecordListPage> createState() => _RecordListPageState();
+}
+
+class _RecordListPageState extends State<RecordListPage> {
+  bool isAlreadyAddRecord = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: AppColors.BG_NORMAL,
-        title: Text('Catatan Pengeluaran'),
+        title: const Text('Catatan Pengeluaran'),
       ),
       backgroundColor: AppColors.BG_DARK,
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.BLUE_NORMAL,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           _addRecord(context);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: ListView(children: [
-          for (final record in records)
-            CardRecordView(
-              record: record,
-            )
-        ]),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: (isAlreadyAddRecord)
+            ? ListView(children: [
+                for (final record in records)
+                  CardRecordView(
+                    record: record,
+                  )
+              ])
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.search, color: Colors.white, size: 64),
+                    SizedBox(height: 8),
+                    Text('Belum ada catatan, klik button + untuk menambah'),
+                  ],
+                ),
+              ),
       ),
     );
   }
@@ -39,14 +56,18 @@ class RecordListPage extends StatelessWidget {
   Future<void> _addRecord(BuildContext context) async {
     final result = await Navigator.push(
       context,
-      // Create the SelectionScreen in the next step.
       MaterialPageRoute(builder: (context) => const RecordAddPage()),
     );
     if (result) {
       ScaffoldMessenger.of(context)
         ..removeCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text('Catatan berhasil ditambahkan'),
-          backgroundColor: Colors.green,));
+        ..showSnackBar(const SnackBar(
+          content: Text('Catatan berhasil ditambahkan'),
+          backgroundColor: Colors.green,
+        ));
+      setState(() {
+        isAlreadyAddRecord = true;
+      });
     }
   }
 }

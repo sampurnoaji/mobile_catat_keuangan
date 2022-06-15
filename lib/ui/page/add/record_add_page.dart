@@ -28,12 +28,12 @@ class _RecordAddPageState extends State<RecordAddPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.BG_NORMAL,
-          title: Text('Tambah Catatan'),
+          title: const Text('Tambah Catatan'),
         ),
         backgroundColor: AppColors.BG_DARK,
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.all(32),
+            margin: const EdgeInsets.all(32),
             child: Column(
               children: [
                 EditTextView(
@@ -42,14 +42,14 @@ class _RecordAddPageState extends State<RecordAddPage> {
                     date = value;
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 EditTextView(
                   label: 'Kategori',
                   onChanged: (value) {
                     category = value;
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 EditTextView(
                   label: 'Rupiah',
                   onChanged: (value) {
@@ -57,20 +57,20 @@ class _RecordAddPageState extends State<RecordAddPage> {
                   },
                   keyboardType: TextInputType.number,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 EditTextView(
                   label: 'Catatan',
                   onChanged: (value) {
                     note = value;
                   },
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   (isErrorForm) ? 'Lengkapi isian form' : '',
-                  style: TextStyle(color: Colors.redAccent),
+                  style: const TextStyle(color: Colors.redAccent),
                 ),
-                SizedBox(height: 32),
-                Container(
+                const SizedBox(height: 32),
+                SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
@@ -84,12 +84,12 @@ class _RecordAddPageState extends State<RecordAddPage> {
                           setError(true);
                         }
                       },
-                      child: Text('Simpan'),
+                      child: const Text('Simpan'),
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(AppColors.BLUE_NORMAL),
                         shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
+                          const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(16)),
                           ),
                         ),
