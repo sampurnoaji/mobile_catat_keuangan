@@ -1,7 +1,7 @@
-import 'package:catat_keuangan/ui/dummy_data.dart';
-import 'package:catat_keuangan/ui/list/card_record.dart';
 import 'package:catat_keuangan/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import 'ui/page/list/record_list_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,29 +15,36 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.BG_NORMAL,
-        title: Text('Catatan Pengeluaran'),
-      ),
-      backgroundColor: AppColors.BG_DARK,
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: ListView(children: [
-          for (final record in records)
-            CardRecordView(record: record,)
-        ]),
-      ),
+      theme: ThemeData.light().copyWith(
+          colorScheme: ThemeData.light().colorScheme.copyWith(
+                primary: AppColors.BG_NORMAL,
+              ),
+          inputDecorationTheme: const InputDecorationTheme(
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: Colors.white,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 2.0,
+                color: Colors.white,
+              ),
+            ),
+            floatingLabelStyle: TextStyle(
+              color: Colors.white,
+            ),
+            labelStyle: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          textTheme: const TextTheme(
+            bodyText1: TextStyle(
+              color: Colors.white,
+            ),
+          )),
+      home: RecordListPage(),
     );
   }
 }
