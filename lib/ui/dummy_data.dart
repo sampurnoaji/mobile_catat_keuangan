@@ -4,6 +4,7 @@ final records = <Record>[
   Record(
       date: '1 Januari 2022',
       category: 'Makan',
-      amount: 20000,
-      note: 'Sate Kelinci'),
+      amount: 200000,
+      note:
+          'Sate Kelinci, Es teh, Bubur Hangat, Kacang kulit, kerupuk udang satu plastik'),
 ];
